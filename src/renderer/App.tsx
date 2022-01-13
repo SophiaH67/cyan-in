@@ -1,21 +1,20 @@
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
 import 'tailwindcss/tailwind.css';
-
-const Hello = () => {
-  return (
-    <div>
-      <p className="text-center">Hello</p>
-    </div>
-  );
-};
+import background from '../../assets/img/bg.jpg';
+import Users from './classes/Users';
+import User from './components/User';
 
 export default function App() {
+  const users = new Users().getUsers();
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Hello />} />
-      </Routes>
-    </Router>
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+      }}
+      className="h-screen bg-cover bg-center flex flex-col justify-center items-center"
+    >
+      {users.map((user) => (
+        <User key={user.name} user={user} onClick={() => {}} />
+      ))}
+    </div>
   );
 }
